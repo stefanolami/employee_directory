@@ -4,7 +4,8 @@ const gridContainer = document.querySelector('.grid-container');
 const overlay = document.querySelector('.overlay');
 const modalContainer = document.querySelector('.modal')
 let modalClose = document.querySelector('button');
-
+let search = document.querySelector(".search");
+let cards = document.querySelectorAll('.card');
 
 fetch(url)
     .then(res => res.json())
@@ -25,7 +26,7 @@ function displayEmployees(data) {
         let img = employees[i].picture.large;
 
         employeesHtml += `
-        <div class="card" id="${i}">
+        <div class="card ${firstName} ${lastName}" id="${i}">
             <img src="${img}" alt="" class="avatar">
             <div class="text-container">
                 <h2 class="name">${firstName} ${lastName}</h2>
@@ -121,6 +122,42 @@ overlay.addEventListener('click', e => {
     overlay.classList.add('hidden');
     }
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+search.addEventListener("keydown", () => {
+    let searchValue = search.value.toLowerCase();
+    let cards = document.querySelectorAll('.card');
+    for (let i = 0; i < cards.length; i++) {
+        let className = cards[i].className.toLowerCase();
+       if (!className.includes(searchValue)) {
+           cards[i].style.display = "none";
+       }
+    }
+});
+
+search.addEventListener("keydown", () => {
+    let searchValue = search.value.toLowerCase();
+    let cards = document.querySelectorAll('.card');
+    for (let i = 0; i < cards.length; i++) {
+        let className = cards[i].className.toLowerCase();
+       if (className.includes(searchValue)) {
+           cards[i].style.display = "grid";
+       }
+    }
+});
 
 
 

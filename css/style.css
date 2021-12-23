@@ -41,9 +41,28 @@ img {
     margin: 20px;
 }
 
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
 h1 {
     font-weight: 600;
     margin: 0 0 50px 20px;
+}
+
+.search {
+    border: 2px solid lightgray;
+    border-radius: 6px;
+    height: 40px;
+    width: 400px;
+    font-size: 1.4rem;
+    color: rgb(112, 112, 112);
+}
+
+.search:hover {
+    color: rgb(58, 58, 58);
+    border: 2px solid rgb(146, 146, 146);
 }
 
 .text-container {
@@ -88,6 +107,26 @@ p {
     padding: 30px 30px;
 }
 
+.modal::before {
+    content: '<';
+    font-weight: 700;
+    font-size: 2.5rem;
+    position: absolute;
+    left: 10px;
+    bottom: 50%;
+    color: rgb(58, 58, 58);
+}
+
+.modal::after {
+    content: '>';
+    font-weight: 700;
+    font-size: 2.5rem;
+    position: absolute;
+    right: 10px;
+    bottom: 50%;
+    color: rgb(58, 58, 58);
+}
+
 .modal-close {
     position: absolute;
     right: 15px;
@@ -97,6 +136,7 @@ p {
     background-color: white;
     font-weight: 600;
     font-size: 1.8rem;
+    color: rgb(58, 58, 58);
 }
 
 .hidden {
