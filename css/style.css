@@ -1,3 +1,5 @@
+/* General */
+
 body {
     position: relative;
     background-color: rgb(247, 247, 247);
@@ -5,6 +7,61 @@ body {
     font-size: 18px;
     padding: 20px;
 }
+
+/* main */
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 31.5% 31.5% 31.5%;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 40px 50px;
+}
+
+.card {
+    display: grid;
+    grid-template-columns: 35% 65%;
+    border: 2px solid lightgray;
+    border-radius: 6px;
+    background-color: white;
+}
+
+.card:hover {
+    cursor: pointer;
+}
+
+img {
+    border-radius: 50%;
+    width: 170px;
+    height: 170px;
+    margin: 20px;
+}
+
+h1 {
+    font-weight: 600;
+    margin: 0 0 50px 20px;
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 20px;
+}
+
+h2,
+p {
+    margin: 2px;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+p {
+    font-size: 20px;
+}
+
+/* Overlay */
 
 .overlay {
     position: absolute;
@@ -36,49 +93,18 @@ body {
     display: none;
 }
 
-.grid-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
-    gap: 40px 50px;
+
+
+
+
+
+
+@media only screen and (min-width: 768px) {
+
 }
 
-.card {
-    display: grid;
-    grid-template-columns: 35% 65%;
-    border: 2px solid lightgray;
-    border-radius: 6px;
-    background-color: white;
-}
+@media only screen and (min-width: 1024px) {
 
-img {
-    border-radius: 50%;
-    width: 170px;
-    height: 170px;
-    margin: 20px;
-}
+    
 
-h1 {
-    font-weight: 600;
-    margin: 0 0 20px 20px;
-}
-
-.text-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-left: 20px;
-}
-
-h2,
-p {
-    margin: 2px;
-}
-
-h2 {
-    font-size: 30px;
-}
-
-p {
-    font-size: 20px;
 }
