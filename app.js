@@ -3,15 +3,11 @@ const url = 'https://randomuser.me/api/?results=12';
 const gridContainer = document.querySelector('.grid-container');
 const overlay = document.querySelector('.overlay');
 const modalContainer = document.querySelector('.modal')
-let modalClose = document.querySelector('button');
 let search = document.querySelector(".search");
 let cards = document.querySelectorAll('.card');
 
-fetch(url)
-    .then(res => res.json())
-    .then(data => data.results)
-    .then(displayEmployees)
-    .catch(err => console.log(err));
+
+/* functions */
 
 
 function displayEmployees(data) {
@@ -35,24 +31,6 @@ function displayEmployees(data) {
             </div>
         </div>`
     };
-     /* employees.forEach((employee) => {
-        let firstName = employee.name.first;
-        let lastName = employee.name.last;
-        let email = employee.email;
-        let city = employee.location.city;
-        let img = employee.picture.large;
-
-        employeesHtml += `
-        <div class="card">
-            <img src="${img}" alt="" class="avatar">
-            <div class="text-container">
-                <h2 class="name">${firstName} ${lastName}</h2>
-                <p class="email">${email}</p>
-                <p class="address">${city}</p>
-            </div>
-        </div>`
-        return employeesHtml;
-    }); */
 
     gridContainer.innerHTML = employeesHtml;
 }
@@ -68,45 +46,40 @@ function displayModal(index) {
     let date = new Date(dob.date);
 
     const modalHtml = `
-        <button class="modal-close">x</button>
-        <img class="avatar" src="${img}" />
-        <div class="text-container">
-        <h2 class="name">${name.first} ${name.last}</h2>
-        <p class="email">${email}</p>
-        <p class="address">${location.city}</p>
-        <hr />
-        <p>${cell}</p>
-        <p class="address">${location.street.name} ${location.street.number}, ${location.state} ${location.postcode}</p>
-        <p>Birthdate:
-        ${date.getMonth()}/${date.getDate()}/${date.getFullYear()}</p>
+        <div class="modal  ${index}">
+            <button class="close">x</button>
+            <img class="avatar" src="${img}" />
+            <button class="switch-left"><</button>
+            <button class="switch-right">></button>
+            <div class="text-container">
+                <h2 class="name">${name.first} ${name.last}</h2>
+                <p class="email">${email}</p>
+                <p class="address">${location.city}</p>
+                <hr />
+                <p>${cell}</p>
+                <p class="address">${location.street.name} ${location.street.number}, ${location.state} ${location.postcode}</p>
+                <p>Birthdate:
+                ${date.getMonth()}/${date.getDate()}/${date.getFullYear()}</p>
+            </div>
         </div>`;
     
     overlay.classList.remove('hidden');
-    modalContainer.innerHTML = modalHtml;
+    overlay.innerHTML = modalHtml;
 }
 
-/* function displayModal(index) {
-    let { name, dob, phone, email, location: { city, street: {number, streetname}, state, postcode }, picture } = employees[index];
-    let date = new Date(dob.date);
 
-    const modalHtml = `
-        <button class="modal-close">x</button>
-        <img class="avatar" src="${picture.large}" />
-        <div class="text-container">
-        <h2 class="name">${name.first} ${name.last}</h2>
-        <p class="email">${email}</p>
-        <p class="address">${city}</p>
-        <hr />
-        <p>${phone}</p>
-        <p class="address">${street}, ${state} ${postcode}</p>
-        <p>Birthday:
-        ${date.getMonth()}/${date.getDate()}/${date.getFullYear()}</p>
-        </div>`;
-    
-    overlay.classList.remove('hidden');
-    modalContainer.innerHTML = modalHtml;
-    modalClose = document.querySelector('.modal-close');
-} */
+/* fetch */
+
+
+fetch(url)
+    .then(res => res.json())
+    .then(data => data.results)
+    .then(displayEmployees)
+    .catch(err => console.log(err));
+
+
+/* event listeners */
+
 
 gridContainer.addEventListener('click', e => {
     if (e.target !== gridContainer) {
@@ -118,23 +91,35 @@ gridContainer.addEventListener('click', e => {
 })
 
 overlay.addEventListener('click', e => {
-    if (e.target.className === 'modal-close') {
-    overlay.classList.add('hidden');
+    if (e.target.className === 'close') {
+        overlay.classList.add('hidden');
+    } else if (e.target.className === 'switch-left') {
+        let modalDiv = document.querySelector('.modal');
+        let index = modalDiv.className.replace('modal ', '');
+        let newIndex;
+        if (index === ' 0') {
+            let newIndex = 11
+            displayModal(newIndex);
+        } else {
+            let newIndex = index - 1;
+            displayModal(newIndex);
+        }
+        
+    } else if (e.target.className === 'switch-right') {
+        let modalDiv = document.querySelector('.modal');
+        let index = modalDiv.className.replace('modal ', '');
+        let newIndex;
+        if (index === ' 11') {
+            let newIndex = 0;
+            displayModal(newIndex);
+        } else {
+            index = parseInt(index);
+            let newIndex = index + 1;
+            displayModal(newIndex);
+        }
+        
     }
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 search.addEventListener("keydown", () => {

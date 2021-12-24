@@ -107,36 +107,42 @@ p {
     padding: 30px 30px;
 }
 
-.modal::before {
-    content: '<';
-    font-weight: 700;
-    font-size: 2.5rem;
+.switch-left {
+    font-weight: 400;
+    font-size: 2rem;
     position: absolute;
-    left: 10px;
-    bottom: 50%;
-    color: rgb(58, 58, 58);
+    left: 5px;
+    bottom: 45%;
+    cursor: pointer;
+    color: rgb(146, 146, 146);
+    background-color: white;
+    border: none;
 }
 
-.modal::after {
-    content: '>';
-    font-weight: 700;
-    font-size: 2.5rem;
+.switch-right {
+    font-weight: 400;
+    font-size: 2rem;
     position: absolute;
-    right: 10px;
-    bottom: 50%;
-    color: rgb(58, 58, 58);
+    right: 5px;
+    bottom: 45%;
+    cursor: pointer;
+    color: rgb(146, 146, 146);
+    background-color: white;
+    border: none;
 }
 
-.modal-close {
+.close {
     position: absolute;
     right: 15px;
     top: 5px;
     cursor: pointer;
     border: none;
     background-color: white;
-    font-weight: 600;
+    font-weight: 400;
     font-size: 1.8rem;
-    color: rgb(58, 58, 58);
+    color: rgb(146, 146, 146);
+    margin: 0;
+    padding: 5px;
 }
 
 .hidden {
@@ -144,17 +150,3 @@ p {
 }
 
 
-
-
-
-
-
-@media only screen and (min-width: 768px) {
-
-}
-
-@media only screen and (min-width: 1024px) {
-
-    
-
-}
